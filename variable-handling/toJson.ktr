@@ -19,6 +19,11 @@
         <default_value>5</default_value>
         <description/>
       </parameter>
+      <parameter>
+        <name>xfolderPath</name>
+        <default_value>${FOLDER_PATH}</default_value>
+        <description/>
+      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -494,12 +499,12 @@ https://wiki.pentaho.com/display/EAI/Json+output</note>
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>- enable get variable
+      <note>- enable get variable  // EXTEND DEMO WITH GET_VARIABLES STEP ...
 - disable default folder path in transformation properties 
 - show what happens with set and get variable from the parent job. </note>
       <xloc>128</xloc>
       <yloc>544</yloc>
-      <width>423</width>
+      <width>428</width>
       <heigth>52</heigth>
       <fontname>Noto Sans</fontname>
       <fontsize>9</fontsize>
@@ -538,6 +543,57 @@ https://wiki.pentaho.com/display/EAI/Json+output</note>
       <drawshadow>Y</drawshadow>
     </notepad>
   </notepads>
+  <connection>
+    <name>knowledgebase</name>
+    <server>${DAB_SYS_KB_HOST}</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>knowledgebase</database>
+    <port>${DAB_SYS_KB_PORT}</port>
+    <username>${DAB_SYS_KB_USERNAME}</username>
+    <password>${DAB_SYS_KB_PASSWORD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${DAB_SYS_KB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
   <order>
     <hop>
       <from>Get Variables</from>
@@ -612,7 +668,7 @@ https://wiki.pentaho.com/display/EAI/Json+output</note>
     <encoding>UTF-8</encoding>
     <addtoresult>N</addtoresult>
     <file>
-      <name>${folderPath}/json-data-${limitOutput}</name>
+      <name>${FOLDER_PATH}/json-data-${limitOutput}</name>
       <extention>js</extention>
       <append>N</append>
       <split>N</split>
@@ -641,7 +697,7 @@ https://wiki.pentaho.com/display/EAI/Json+output</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
+      <xloc>1104</xloc>
       <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
