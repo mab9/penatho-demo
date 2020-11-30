@@ -19,6 +19,11 @@
         <default_value>1996</default_value>
         <description/>
       </parameter>
+      <parameter>
+        <name>REGEX_DATE_FORMAT</name>
+        <default_value>(\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))</default_value>
+        <description/>
+      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -456,11 +461,13 @@ MAX_YEAR = 2001
 MIN_YEAR = 1996
 
 Allowed values are dates      1996 &lt;=   dates &lt; 2001 
-that are in the format  yyyy-MM-dd</note>
+that are in the format  yyyy-MM-dd
+
+</note>
       <xloc>1632</xloc>
       <yloc>208</yloc>
       <width>361</width>
-      <heigth>164</heigth>
+      <heigth>192</heigth>
       <fontname>Noto Sans</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -638,7 +645,7 @@ that are in the format  yyyy-MM-dd</note>
       <end_string/>
       <start_string_not_allowed/>
       <end_string_not_allowed/>
-      <regular_expression>(\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))</regular_expression>
+      <regular_expression>${REGEX_DATE_FORMAT}</regular_expression>
       <regular_expression_not_allowed/>
       <error_code>3</error_code>
       <error_description>Has to be in format yyyy-MM-dd</error_description>
