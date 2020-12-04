@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>date-validations</name>
+    <name>convert-dates</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -10,18 +10,18 @@
     <directory>/</directory>
     <parameters>
       <parameter>
-        <name>CURRENT_YEAR</name>
-        <default_value>2000</default_value>
+        <name>IS_NOT_HERE</name>
+        <default_value>I was right there</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>MIN_YEAR</name>
-        <default_value>1996</default_value>
+        <name>IS_NOT_HERE_X</name>
+        <default_value/>
         <description/>
       </parameter>
       <parameter>
-        <name>REGEX_DATE_FORMAT</name>
-        <default_value>(\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))</default_value>
+        <name>TIMESTAMP_FILE_GENERATED</name>
+        <default_value>2020/12/03 17:09:08.864</default_value>
         <description/>
       </parameter>
     </parameters>
@@ -443,31 +443,59 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2020/11/27 09:55:57.728</created_date>
+    <created_date>2020/12/03 10:37:50.129</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2020/11/27 09:55:57.728</modified_date>
+    <modified_date>2020/12/03 10:37:50.129</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>Works with string and with date types
-Conversion mask is a nice feature to format a date / string
+      <note>Timestamp variable is parsed from a string to a date when using 
+the step get Variable. Be sure that the passed date string 
+is in the right format: 2020/12/03 17:09:08.864. 
 
-- the max definition does exclude the max value
-- the min definition does include the min value
- 
-MAX_YEAR = 2001
-MIN_YEAR = 1996
+If generated via SQL:
 
-Allowed values are dates      1996 &lt;=   dates &lt; 2001 
-that are in the format  yyyy-MM-dd
+ -- cut some miliseconds to make it convertable by spoon
+SELECT TO_CHAR(NOW(), 'YYYY/MM/DD HH:MI:ss.SSS') AS stamptime;
+
+Otherwise the date will not be readable and convertable via select values. 
+
 
 </note>
-      <xloc>1632</xloc>
-      <yloc>208</yloc>
-      <width>361</width>
+      <xloc>528</xloc>
+      <yloc>256</yloc>
+      <width>459</width>
       <heigth>192</heigth>
+      <fontname>Noto Sans</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>If the timestamp output will be in date type, the format
+date format has to be defined on the output step!
+
+If its a string, there can be select value step to format the date
+befor the string is passed to the output step.
+
+Keep in mind, a string can not be formated to a date with 
+a string to string set format!</note>
+      <xloc>1136</xloc>
+      <yloc>384</yloc>
+      <width>391</width>
+      <heigth>122</heigth>
       <fontname>Noto Sans</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -486,217 +514,43 @@ that are in the format  yyyy-MM-dd
   </notepads>
   <order>
     <hop>
-      <from>Data Validator</from>
-      <to>Write to log</to>
+      <from>format 2</from>
+      <to>Dummy (do nothing) 3</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Data Validator</from>
-      <to>Write to log 2</to>
+      <from>Get timestamp 2</from>
+      <to>set timestamp if timestamp param is undefined </to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>date format yyy-MM-dd</from>
-      <to>Dummy (do nothing)</to>
+      <from>Dummy (do nothing) 2</from>
+      <to>Save Faults CSV</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>date format yyy/MM/dd</from>
-      <to>Dummy (do nothing)</to>
+      <from>Get timestamp</from>
+      <to>format 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>date format yyyy/MM/dd</from>
-      <to>Dummy (do nothing)</to>
+      <from>set timestamp if timestamp param is undefined </from>
+      <to>format date</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>max date</from>
-      <to>Dummy (do nothing)</to>
+      <from>format date</from>
+      <to>format date to string</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>max date -1</from>
-      <to>Dummy (do nothing)</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>min date</from>
-      <to>Dummy (do nothing)</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>min date -1</from>
-      <to>Dummy (do nothing)</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>happy path</from>
-      <to>Dummy (do nothing)</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>happy path 2</from>
-      <to>Dummy (do nothing)</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>happy path 2 2</from>
-      <to>Dummy (do nothing)</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy (do nothing)</from>
-      <to>set MAX_YEAR</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>set MAX_YEAR</from>
-      <to>Data Validator</to>
+      <from>format date to string</from>
+      <to>Dummy (do nothing) 2</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Data Validator</name>
-    <type>Validator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <validate_all>Y</validate_all>
-    <concat_errors>N</concat_errors>
-    <concat_separator>|</concat_separator>
-    <validator_field>
-      <name>date</name>
-      <validation_name>date max</validation_name>
-      <max_length/>
-      <min_length/>
-      <null_allowed>N</null_allowed>
-      <only_null_allowed>N</only_null_allowed>
-      <only_numeric_allowed>N</only_numeric_allowed>
-      <data_type>String</data_type>
-      <data_type_verified>N</data_type_verified>
-      <conversion_mask>yyyy-MM-dd</conversion_mask>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <max_value>${MAX_YEAR}-12-31</max_value>
-      <min_value/>
-      <start_string/>
-      <end_string/>
-      <start_string_not_allowed/>
-      <end_string_not_allowed/>
-      <regular_expression/>
-      <regular_expression_not_allowed/>
-      <error_code>1</error_code>
-      <error_description>Year has to be &lt; DATE OF MAX_YEAR</error_description>
-      <is_sourcing_values>N</is_sourcing_values>
-      <sourcing_step/>
-      <sourcing_field/>
-      <allowed_value/>
-    </validator_field>
-    <validator_field>
-      <name>date</name>
-      <validation_name>date min</validation_name>
-      <max_length/>
-      <min_length/>
-      <null_allowed>N</null_allowed>
-      <only_null_allowed>N</only_null_allowed>
-      <only_numeric_allowed>N</only_numeric_allowed>
-      <data_type>String</data_type>
-      <data_type_verified>N</data_type_verified>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <max_value/>
-      <min_value>${MIN_YEAR}-01-01</min_value>
-      <start_string/>
-      <end_string/>
-      <start_string_not_allowed/>
-      <end_string_not_allowed/>
-      <regular_expression/>
-      <regular_expression_not_allowed/>
-      <error_code>2</error_code>
-      <error_description>Year has to be >= DATE OF MIN_YEAR</error_description>
-      <is_sourcing_values>N</is_sourcing_values>
-      <sourcing_step/>
-      <sourcing_field/>
-      <allowed_value/>
-    </validator_field>
-    <validator_field>
-      <name>date</name>
-      <validation_name>date format yyyy-MM-dd</validation_name>
-      <max_length/>
-      <min_length/>
-      <null_allowed>N</null_allowed>
-      <only_null_allowed>N</only_null_allowed>
-      <only_numeric_allowed>N</only_numeric_allowed>
-      <data_type>String</data_type>
-      <data_type_verified>N</data_type_verified>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <max_value/>
-      <min_value/>
-      <start_string/>
-      <end_string/>
-      <start_string_not_allowed/>
-      <end_string_not_allowed/>
-      <regular_expression>${REGEX_DATE_FORMAT}</regular_expression>
-      <regular_expression_not_allowed/>
-      <error_code>3</error_code>
-      <error_description>Has to be in format yyyy-MM-dd</error_description>
-      <is_sourcing_values>N</is_sourcing_values>
-      <sourcing_step/>
-      <sourcing_field/>
-      <allowed_value/>
-    </validator_field>
-    <validator_field>
-      <name>date</name>
-      <validation_name>date max only the year</validation_name>
-      <max_length/>
-      <min_length/>
-      <null_allowed>Y</null_allowed>
-      <only_null_allowed>N</only_null_allowed>
-      <only_numeric_allowed>N</only_numeric_allowed>
-      <data_type>String</data_type>
-      <data_type_verified>N</data_type_verified>
-      <conversion_mask>yyyy</conversion_mask>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <max_value>${MAX_YEAR}</max_value>
-      <min_value/>
-      <start_string/>
-      <end_string/>
-      <start_string_not_allowed/>
-      <end_string_not_allowed/>
-      <regular_expression/>
-      <regular_expression_not_allowed/>
-      <error_code>4</error_code>
-      <error_description>Year has to be &lt; MAX_YEAR</error_description>
-      <is_sourcing_values>N</is_sourcing_values>
-      <sourcing_step/>
-      <sourcing_field/>
-      <allowed_value/>
-    </validator_field>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>960</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dummy (do nothing)</name>
+    <name>Dummy (do nothing) 2</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -714,181 +568,38 @@ that are in the format  yyyy-MM-dd
       </output>
     </remotesteps>
     <GUI>
-      <xloc>400</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Write to log</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <loglevel>log_level_rowlevel</loglevel>
-    <displayHeader>Y</displayHeader>
-    <limitRows>N</limitRows>
-    <limitRowsNumber>0</limitRowsNumber>
-    <logmessage>Date validation was ok</logmessage>
-    <fields>
-      <field>
-        <name>date</name>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1312</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Write to log 2</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <loglevel>log_level_error</loglevel>
-    <displayHeader>Y</displayHeader>
-    <limitRows>N</limitRows>
-    <limitRowsNumber>0</limitRowsNumber>
-    <logmessage>Date validation failed: 
-</logmessage>
-    <fields>
-      <field>
-        <name>date</name>
-      </field>
-      <field>
-        <name>error_desc</name>
-      </field>
-      <field>
-        <name>error_code</name>
-      </field>
-      <field>
-        <name>error_field</name>
-      </field>
-      <field>
-        <name>error_nr_fieldnamd</name>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1344</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>date format yyy-MM-dd</name>
-    <type>RowGenerator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>date</name>
-        <type>String</type>
-        <format>yyyy-MM-dd</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>200-01-31</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <limit>1</limit>
-    <never_ending>N</never_ending>
-    <interval_in_ms>5000</interval_in_ms>
-    <row_time_field>now</row_time_field>
-    <last_time_field>FiveSecondsAgo</last_time_field>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>448</xloc>
-      <yloc>528</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>date format yyy/MM/dd</name>
-    <type>RowGenerator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>date</name>
-        <type>String</type>
-        <format>yyyy/MM/dd</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>200/01/31</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <limit>1</limit>
-    <never_ending>N</never_ending>
-    <interval_in_ms>5000</interval_in_ms>
-    <row_time_field>now</row_time_field>
-    <last_time_field>FiveSecondsAgo</last_time_field>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>304</xloc>
+      <xloc>1040</xloc>
       <yloc>560</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>date format yyyy/MM/dd</name>
-    <type>RowGenerator</type>
+    <name>Dummy (do nothing) 3</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1056</xloc>
+      <yloc>720</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get timestamp</name>
+    <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -899,23 +610,18 @@ that are in the format  yyyy-MM-dd
     </partitioning>
     <fields>
       <field>
-        <name>date</name>
-        <type>String</type>
-        <format>yyyy/MM/dd</format>
+        <name>timestamp</name>
+        <variable>${TIMESTAMP_FILE_GENERATED}</variable>
+        <type>Date</type>
+        <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif>2000/01/31</nullif>
         <length>-1</length>
         <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
+        <trim_type>none</trim_type>
       </field>
     </fields>
-    <limit>1</limit>
-    <never_ending>N</never_ending>
-    <interval_in_ms>5000</interval_in_ms>
-    <row_time_field>now</row_time_field>
-    <last_time_field>FiveSecondsAgo</last_time_field>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -924,14 +630,14 @@ that are in the format  yyyy-MM-dd
       </output>
     </remotesteps>
     <GUI>
-      <xloc>272</xloc>
-      <yloc>480</yloc>
+      <xloc>368</xloc>
+      <yloc>720</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>happy path</name>
-    <type>RowGenerator</type>
+    <name>Get timestamp 2</name>
+    <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -942,23 +648,30 @@ that are in the format  yyyy-MM-dd
     </partitioning>
     <fields>
       <field>
-        <name>date</name>
-        <type>String</type>
-        <format>yyyy-MM-dd</format>
+        <name>timestamp_date</name>
+        <variable>${TIMESTAMP_FILE_GENERATED}</variable>
+        <type>Date</type>
+        <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif>2000-05-31</nullif>
         <length>-1</length>
         <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>timestamp_string</name>
+        <variable>${TIMESTAMP_FILE_GENERATED}</variable>
+        <type>Date</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
       </field>
     </fields>
-    <limit>1</limit>
-    <never_ending>N</never_ending>
-    <interval_in_ms>5000</interval_in_ms>
-    <row_time_field>now</row_time_field>
-    <last_time_field>FiveSecondsAgo</last_time_field>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -967,14 +680,119 @@ that are in the format  yyyy-MM-dd
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>32</yloc>
+      <xloc>288</xloc>
+      <yloc>560</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>happy path 2</name>
-    <type>RowGenerator</type>
+    <name>Save Faults CSV</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <separator>;</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>${PATH_TO_TEST_FOLDER}/fehler</name>
+      <is_command>N</is_command>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>Y</do_not_open_new_file_init>
+      <extention/>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>N</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>timestamp_date</name>
+        <type>Date</type>
+        <format>dd.MM.yyyy HH:mm</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>timestamp_date</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>timestamp_string</name>
+        <type>Date</type>
+        <format>dd.MM.yyyy hh:mm</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>timestamp_string</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1280</xloc>
+      <yloc>560</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>format date</name>
+    <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -984,24 +802,25 @@ that are in the format  yyyy-MM-dd
       <schema_name/>
     </partitioning>
     <fields>
-      <field>
-        <name>date</name>
-        <type>String</type>
-        <format>yyyy-MM-dd</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>2000-01-31</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>timestamp_string</name>
+        <rename>timestamp_string</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>dd.MM.yyyy HH:mm</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
-    <limit>1</limit>
-    <never_ending>N</never_ending>
-    <interval_in_ms>5000</interval_in_ms>
-    <row_time_field>now</row_time_field>
-    <last_time_field>FiveSecondsAgo</last_time_field>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -1010,16 +829,16 @@ that are in the format  yyyy-MM-dd
       </output>
     </remotesteps>
     <GUI>
-      <xloc>432</xloc>
-      <yloc>16</yloc>
+      <xloc>784</xloc>
+      <yloc>560</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>happy path 2 2</name>
-    <type>RowGenerator</type>
+    <name>format 2</name>
+    <type>SelectValues</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -1027,24 +846,25 @@ that are in the format  yyyy-MM-dd
       <schema_name/>
     </partitioning>
     <fields>
-      <field>
-        <name>date</name>
-        <type>String</type>
-        <format>yyyy-MM-dd</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>2002-01-31</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>timestamp</name>
+        <rename>timestamp</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>dd.MM.yyyy HH:mm</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
-    <limit>1</limit>
-    <never_ending>N</never_ending>
-    <interval_in_ms>5000</interval_in_ms>
-    <row_time_field>now</row_time_field>
-    <last_time_field>FiveSecondsAgo</last_time_field>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -1053,185 +873,13 @@ that are in the format  yyyy-MM-dd
       </output>
     </remotesteps>
     <GUI>
-      <xloc>512</xloc>
-      <yloc>32</yloc>
+      <xloc>816</xloc>
+      <yloc>720</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>max date</name>
-    <type>RowGenerator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>date</name>
-        <type>String</type>
-        <format>yyyy-MM-dd</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>2001-01-01</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <limit>1</limit>
-    <never_ending>N</never_ending>
-    <interval_in_ms>5000</interval_in_ms>
-    <row_time_field>now</row_time_field>
-    <last_time_field>FiveSecondsAgo</last_time_field>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>96</xloc>
-      <yloc>352</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>max date -1</name>
-    <type>RowGenerator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>date</name>
-        <type>String</type>
-        <format>yyyy-MM-dd</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>2000-12-31</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <limit>1</limit>
-    <never_ending>N</never_ending>
-    <interval_in_ms>5000</interval_in_ms>
-    <row_time_field>now</row_time_field>
-    <last_time_field>FiveSecondsAgo</last_time_field>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>32</xloc>
-      <yloc>304</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>min date</name>
-    <type>RowGenerator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>date</name>
-        <type>String</type>
-        <format>yyyy-MM-dd</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>1996-01-01</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <limit>1</limit>
-    <never_ending>N</never_ending>
-    <interval_in_ms>5000</interval_in_ms>
-    <row_time_field>now</row_time_field>
-    <last_time_field>FiveSecondsAgo</last_time_field>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>64</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>min date -1</name>
-    <type>RowGenerator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>date</name>
-        <type>String</type>
-        <format>yyyy-MM-dd</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>1995-12-31</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <limit>1</limit>
-    <never_ending>N</never_ending>
-    <interval_in_ms>5000</interval_in_ms>
-    <row_time_field>now</row_time_field>
-    <last_time_field>FiveSecondsAgo</last_time_field>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>64</xloc>
-      <yloc>64</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>set MAX_YEAR</name>
+    <name>set timestamp if timestamp param is undefined </name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -1249,12 +897,39 @@ that are in the format  yyyy-MM-dd
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>//Script here
 
-var max = getVariable("CURRENT_YEAR", "") + 1;
+var timestamp_date;
 
-setVariable("MAX_YEAR", max, 'r');</jsScript_script>
+if (!timestamp_date) {
+	timestamp_date = new Date();
+} 
+
+
+var timestamp_string;
+
+if (!timestamp_string) {
+	timestamp_string = new Date();
+} 
+</jsScript_script>
       </jsScript>
     </jsScripts>
-    <fields>    </fields>
+    <fields>
+      <field>
+        <name>timestamp_string</name>
+        <rename>timestamp_string</rename>
+        <type>Date</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>timestamp_date</name>
+        <rename>timestamp_date</rename>
+        <type>Date</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+    </fields>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -1263,24 +938,56 @@ setVariable("MAX_YEAR", max, 'r');</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>272</yloc>
+      <xloc>528</xloc>
+      <yloc>560</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>format date to string</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>timestamp_string</name>
+        <rename>timestamp_string</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>896</xloc>
+      <yloc>560</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step_error_handling>
-    <error>
-      <source_step>Data Validator</source_step>
-      <target_step>Write to log 2</target_step>
-      <is_enabled>Y</is_enabled>
-      <nr_valuename>error_nr_fieldnamd</nr_valuename>
-      <descriptions_valuename>error_desc</descriptions_valuename>
-      <fields_valuename>error_field</fields_valuename>
-      <codes_valuename>error_code</codes_valuename>
-      <max_errors/>
-      <max_pct_errors/>
-      <min_pct_rows/>
-    </error>
   </step_error_handling>
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>

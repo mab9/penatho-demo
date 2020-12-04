@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>toJson</name>
+    <name>getEmptyVariables</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -10,18 +10,18 @@
     <directory>/</directory>
     <parameters>
       <parameter>
-        <name>folderPath</name>
-        <default_value>${FOLDER_PATH}</default_value>
+        <name>IS_NOT_HERE</name>
+        <default_value>I was right there</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>limitOutput</name>
-        <default_value>5</default_value>
+        <name>IS_NOT_HERE_X</name>
+        <default_value/>
         <description/>
       </parameter>
       <parameter>
-        <name>xfolderPath</name>
-        <default_value>/home/mab/Desktop</default_value>
+        <name>TIMESTAMP_FILE_GENERATED</name>
+        <default_value>2020/12/03 17:09:08.864</default_value>
         <description/>
       </parameter>
     </parameters>
@@ -443,114 +443,20 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2020/05/14 14:54:11.126</created_date>
+    <created_date>2020/12/03 10:37:50.129</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2020/05/14 14:54:11.126</modified_date>
+    <modified_date>2020/12/03 10:37:50.129</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>- we do not ouput all fields \ dab_tennant_id
-                - output quantity, field naming, etc.
-                - show difference of nr of rows = 0 and 1
+      <note>check different params for the varibale: IS_NOT_HERE
 
-                show pentaho documentation for: json output
-
-                https://wiki.pentaho.com/display/EAI/Json+output
-            </note>
-      <xloc>976</xloc>
-      <yloc>272</yloc>
-      <width>375</width>
-      <heigth>122</heigth>
-      <fontname>Noto Sans</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>show limit output parameter passed by job arguments, and default value</note>
-      <xloc>384</xloc>
-      <yloc>368</yloc>
-      <width>453</width>
-      <heigth>24</heigth>
-      <fontname>Noto Sans</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>- enable get variable // EXTEND DEMO WITH GET_VARIABLES STEP ...
-                - disable default folder path in transformation properties
-                - show what happens with set and get variable from the parent job.
-            </note>
-      <xloc>128</xloc>
-      <yloc>544</yloc>
-      <width>483</width>
-      <heigth>66</heigth>
-      <fontname>Noto Sans</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>don't forget to add your DB-Connection!</note>
-      <xloc>270</xloc>
-      <yloc>126</yloc>
-      <width>253</width>
-      <heigth>24</heigth>
-      <fontname>Noto Sans</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>FOLDER_PATH is a parameter that is not always set. 
-The file path for the output json has to be configured 
-the right way!</note>
-      <xloc>1426</xloc>
-      <yloc>476</yloc>
-      <width>337</width>
+overwritte isHere or set add a new column with the result.</note>
+      <xloc>416</xloc>
+      <yloc>304</yloc>
+      <width>362</width>
       <heigth>52</heigth>
       <fontname>Noto Sans</fontname>
       <fontsize>9</fontsize>
@@ -568,74 +474,76 @@ the right way!</note>
       <drawshadow>Y</drawshadow>
     </notepad>
   </notepads>
-  <connection>
-    <name>knowledgebase</name>
-    <server>${DAB_SYS_KB_HOST}</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>knowledgebase</database>
-    <port>${DAB_SYS_KB_PORT}</port>
-    <username>${DAB_SYS_KB_USERNAME}</username>
-    <password>${DAB_SYS_KB_PASSWORD}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>${DAB_SYS_KB_PORT}</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
   <order>
     <hop>
-      <from>Get Variables</from>
-      <to>Table input</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>Table input</from>
-      <to>Select values</to>
+      <from>Modified Java Script Value</from>
+      <to>Dummy (do nothing)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values</from>
-      <to>JSON Output</to>
+      <from>Modified Java Script Value 2</from>
+      <to>Dummy (do nothing) 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Variables</from>
+      <to>Modified Java Script Value</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Variables 2</from>
+      <to>Modified Java Script Value 2</to>
       <enabled>Y</enabled>
     </hop>
   </order>
+  <step>
+    <name>Dummy (do nothing)</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>816</xloc>
+      <yloc>464</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 2</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>816</xloc>
+      <yloc>576</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>Get Variables</name>
     <type>GetVariable</type>
@@ -649,8 +557,8 @@ the right way!</note>
     </partitioning>
     <fields>
       <field>
-        <name>folderPath</name>
-        <variable>${FOLDER_PATH}</variable>
+        <name>isHere</name>
+        <variable>${IS_NOT_HERE}</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -669,14 +577,14 @@ the right way!</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>448</yloc>
+      <xloc>368</xloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>JSON Output</name>
-    <type>JsonOutput</type>
+    <name>Get Variables 2</name>
+    <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -685,33 +593,18 @@ the right way!</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <outputValue>outputValue</outputValue>
-    <jsonBloc>data</jsonBloc>
-    <nrRowsInBloc/>
-    <operation_type>writetofile</operation_type>
-    <compatibility_mode>Y</compatibility_mode>
-    <encoding>UTF-8</encoding>
-    <addtoresult>N</addtoresult>
-    <file>
-      <name>${FOLDER_PATH}/json-data-${limitOutput}</name>
-      <extention>js</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <create_parent_folder>Y</create_parent_folder>
-      <DoNotOpenNewFileInit>N</DoNotOpenNewFileInit>
-      <servlet_output>N</servlet_output>
-    </file>
     <fields>
       <field>
-        <name>gesellschaftsnummer</name>
-        <element>gesellschaftsnummer</element>
-      </field>
-      <field>
-        <name>bezeichnung</name>
-        <element>bezeichnung</element>
+        <name>isHere</name>
+        <variable>${IS_NOT_HERE}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
       </field>
     </fields>
     <cluster_schema/>
@@ -722,14 +615,14 @@ the right way!</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
-      <yloc>448</yloc>
+      <xloc>368</xloc>
+      <yloc>576</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
+    <name>Modified Java Script Value</name>
+    <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -738,91 +631,44 @@ the right way!</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+
+var isHere;
+
+if (isHere &amp;&amp; isHere.length > 0) {
+	isHere = true;
+} else {
+	isHere = false;
+}
+
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
     <fields>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>gesellschaftsnummer</name>
-        <rename>gesellschaftsnummer</rename>
+      <field>
+        <name>isHere</name>
+        <rename>isHereWasHere</rename>
         <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>bezeichnung</name>
-        <rename>bezeichnung</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>dab_tennant_id</name>
-        <rename>dab_tennant_id</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>isHere</name>
+        <rename>isHere</rename>
+        <type>Boolean</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
     </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>816</xloc>
-      <yloc>448</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Table input</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>knowledgebase</connection>
-    <sql>SELECT * from gesellschaft limit ${limitOutput};</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>Y</lazy_conversion_active>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -832,7 +678,69 @@ the right way!</note>
     </remotesteps>
     <GUI>
       <xloc>576</xloc>
-      <yloc>448</yloc>
+      <yloc>464</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Modified Java Script Value 2</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+
+var isHere;
+
+if (!isHere || !isHere.length) {
+	isHere = false;
+} else {
+	isHere = true;
+}
+
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>isHere</name>
+        <rename>isHereWasHere</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>isHere</name>
+        <rename>isHere</rename>
+        <type>Boolean</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>576</xloc>
+      <yloc>576</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
